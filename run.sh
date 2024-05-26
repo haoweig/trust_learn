@@ -1,6 +1,10 @@
 #!/bin/bash
 # creates the new rust binary
 cargo b --release
+ext=$?
+if [[ $ext -ne 0 ]]; then
+    exit $ext
+fi
 # set permission such that binary has permission
 sudo setcap cap_net_admin=epi /home/hugoh/Desktop/rust/trust2/target/release/trust2
 # run binary in background
